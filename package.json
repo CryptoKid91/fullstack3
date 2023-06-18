@@ -4,6 +4,8 @@
 	"description": "Fullstack MOOC part 3 exercises",
 	"main": "index.js",
 	"scripts": {
+		"build:ui": "rm -rf build && cd ~/fullstack/harjoitus/part2 && npm run build && cp -r build ~/fullstack3",
+		"deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
 		"start": "node index.js",
 		"dev": "nodemon index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +21,7 @@
 	},
 	"homepage": "https://github.com/CryptoKid91/fullstack3#readme",
 	"dependencies": {
+		"cors": "^2.8.5",
 		"express": "^4.18.2",
 		"morgan": "^1.10.0"
 	},

@@ -3,6 +3,15 @@ const app = express();
 
 app.use(express.json());
 
+const morgan = require("morgan");
+morgan.token("postData", (req, res) => JSON.stringify(req.body));
+
+app.use(
+	morgan(
+		":method :url :status :res[content-length] - :response-time ms :postData"
+	)
+);
+
 let persons = [
 	{
 		name: "Arto Hellas",
@@ -88,8 +97,6 @@ app.post("/api/persons", (request, response) => {
 		number: body.number,
 		id: generateId(),
 	};
-
-	console.log(person);
 
 	persons = persons.concat(person);
 
